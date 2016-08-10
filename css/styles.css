@@ -4,3 +4,28 @@
   width: 75%;
   float: left;
 }
+
+/* line 29, ../compass/sass/styles.scss */
+.repeated-item {
+  border-bottom: 1px solid #ddd;
+  box-sizing: border-box;
+  height: 40px;
+  padding-top: 10px;
+}
+
+/* line 35, ../compass/sass/styles.scss */
+md-content {
+  margin: 16px;
+}
+
+/* line 38, ../compass/sass/styles.scss */
+md-virtual-repeat-container {
+  border: solid 1px grey;
+}
+
+/* line 41, ../compass/sass/styles.scss */
+#vertical-container {
+  height: 550px;
+  width: 100%;
+  max-width: 400px;
+}
