@@ -16,7 +16,10 @@
 	<script text='text/javascript' src="js/cities.js"></script>
 	<script src="js/scripts.js"></script>
 </head>
-<body ng-controller="citiesController">
+<body ng-controller="citiesController" ng-cloak>
+	<div class="title">
+		<h1>Top Cities in Atlanta</h1>
+	</div>
 
 	<div id="map"></div>
 
@@ -27,16 +30,30 @@
 		</tr>
 		
 	</table> -->
-	<div ng-cloak>
-		<span id="reset"><a href="" ng-click="resetZoom()">Reset</a></span>
+	<div ng-cloak class='search-box'>
+		
 	</div>
 	<div ng-cloak>
 		<md-content layout="column">
-			<md-virtual-repeat-container id="vertical-container">
-				<div md-virtual-repeat='city in cities' class='repeated-item' flex>
-					<span><a href="" ng-click="triggerClick(city.yearRank)">{{city.city}}</a>, </span><span>{{city.state}}</span>
-				</div>
-			</md-virtual-repeat-container>
+			<div id="list-window">
+				<form ng-submit="updateMarkers()">
+					<div>
+						<div class='search-box' ng-cloak>
+							<md-input-container>
+								<label>Search</label>
+								<input id="filter-input" ng-model="citiesFilter" type="text">
+							</md-input-container>
+							<md-button class='md-primary' type="submit" value="Update the map">Update the Map</md-button>
+							<md-button class="md-primary" type="submit" id="reset" ng-click="resetZoom()" value="Zoom Back Out">Zoom Back Out</md-button>
+						</div>
+					</div>
+					<md-virtual-repeat-container id="vertical-container">
+						<div md-virtual-repeat='city in (filteredCities = (cities | filter: citiesFilter))' class='repeated-item' id='popupConatiner' flex>
+							<span><a class="md-warn" href="" ng-click="triggerClick(city.yearRank)">{{city.city}}</a>, </span><span>{{city.state}} </span><button class='md-warn getDir' ng-click="getDirections(city.lat, city.lon)">Get Directions</button><span class='mini-link'><a class="md-warn" href='' ng-click="showAlert($event, city)">More Info</a></span>
+						</div>
+					</md-virtual-repeat-container>
+				</form>
+			</div>
 			<!-- <md-list flex>
 				<md-subheader class="md-no-sticky">City List</md-subheader>
 				<md-list-item class="md-2-line" ng-repeat="city in cities track by $index">

@@ -1,11 +1,12 @@
 /* line 23, ../compass/sass/styles.scss */
 #map {
-  height: 99vh;
-  width: 75%;
+  margin-left: 50px;
+  height: 75vh;
+  width: 50%;
   float: left;
 }
 
-/* line 29, ../compass/sass/styles.scss */
+/* line 30, ../compass/sass/styles.scss */
 .repeated-item {
   border-bottom: 1px solid #ddd;
   box-sizing: border-box;
@@ -13,19 +14,56 @@
   padding-top: 10px;
 }
 
-/* line 35, ../compass/sass/styles.scss */
+/* line 36, ../compass/sass/styles.scss */
 md-content {
   margin: 16px;
 }
 
-/* line 38, ../compass/sass/styles.scss */
+/* line 39, ../compass/sass/styles.scss */
 md-virtual-repeat-container {
   border: solid 1px grey;
 }
 
-/* line 41, ../compass/sass/styles.scss */
+/* line 42, ../compass/sass/styles.scss */
 #vertical-container {
-  height: 550px;
+  margin: 10px 50px;
+  height: 50vh;
   width: 100%;
-  max-width: 400px;
+  max-width: 470px;
+}
+
+/* line 49, ../compass/sass/styles.scss */
+.mini-link {
+  font-size: 10px;
+  margin-right: 8px;
+  margin-bottom: 10px;
+  float: right;
+}
+
+/* line 56, ../compass/sass/styles.scss */
+.title {
+  text-align: center;
+  margin-top: 20px;
+  margin: auto;
+}
+
+/* line 62, ../compass/sass/styles.scss */
+.search-box {
+  margin: 10px 50px;
+  width: 470px;
+}
+/* line 65, ../compass/sass/styles.scss */
+.search-box md-input-container {
+  margin: 0px;
+}
+/* line 68, ../compass/sass/styles.scss */
+.search-box input {
+  width: 100%;
+}
+
+/* line 73, ../compass/sass/styles.scss */
+.getDir {
+  font-size: 10px;
+  margin-right: 3px;
+  float: right;
 }
