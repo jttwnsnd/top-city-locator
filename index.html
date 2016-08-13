@@ -18,7 +18,7 @@
 </head>
 <body ng-controller="citiesController" ng-cloak>
 	<div class="title">
-		<h1>Top Cities in Atlanta</h1>
+		<h1>Top Cities in America</h1>
 	</div>
 
 	<div id="map"></div>
@@ -46,6 +46,9 @@
 							<md-button class='md-primary' type="submit" value="Update the map">Update the Map</md-button>
 							<md-button class="md-primary" type="submit" id="reset" ng-click="resetZoom()" value="Zoom Back Out">Zoom Back Out</md-button>
 						</div>
+					</div>
+					<div class="search-box">
+						<span>Marker Options: </span><span ng-mouseover='pokeballSwap()' class='marker-option'><img ng-mouseover='iconSwap()' src="css/pokeball.png"></span><span ng-mouseover='ultraballSwap()' class='marker-option'><img src="css/ultraball.png"></span><span ng-mouseover='pindropSwap()' class='marker-option'><img src="css/pindrop.png"></span>
 					</div>
 					<md-virtual-repeat-container id="vertical-container">
 						<div md-virtual-repeat='city in (filteredCities = (cities | filter: citiesFilter))' class='repeated-item' id='popupConatiner' flex>

@@ -6,8 +6,12 @@ citiesApp.controller('citiesController',function($scope, $http, $mdDialog){
 		zoom: 4,
 		center: myLatlng
 	});
+	var temp = 0;
 	var reset = document.getElementById('reset')
 	var markers = [];
+	var pokeball = 'css/pokeball.png';
+	var ultraball = 'css/ultraball.png';
+	var pindrop = 'css/pindrop.png';
 	google.maps.event.addListener(reset, 'click', function(){
           	map.setZoom(4);
           	map.setCenter(myLatlng);
@@ -16,24 +20,80 @@ citiesApp.controller('citiesController',function($scope, $http, $mdDialog){
 		console.log('hello');
 		google.maps.event.trigger(reset, 'click');
 	}
+	$scope.pokeballSwap = function(){
+		for(marker in markers){
+			markers[marker].setIcon(pokeball);
+		}
+	}
+	$scope.ultraballSwap = function(){
+		for(marker in markers){
+			markers[marker].setIcon(ultraball);
+		}
+	}
+	$scope.pindropSwap = function(){
+		for(marker in markers){
+			markers[marker].setIcon(pindrop);
+		}
+	}
 	var infoWindow = new google.maps.InfoWindow({});
 	function createMarker(city){
+		var iconClicked = false;
 		var icon = 'css/pokeball.png';
+		var ultraball = 'css/ultraball.png';
 		var cityLatlng = {lat: city.lat, lng: city.lon};
 		var marker = new google.maps.Marker({
 			position: cityLatlng,
 			map: map,
 			title: city.city,
 			//sets the icon image
-			icon: icon
+			icon: 'css/ultraball.png'
 		});
+
 		google.maps.event.addListener(marker, 'click', function(){
-			infoWindow.setContent('<h3>' + city.city + '</h3>')
+			infoWindow.setContent(city.city);
 			infoWindow.open(map, marker);
           	map.setZoom(8);
           	map.setCenter(marker.getPosition());
+          	console.log(marker);
+          	var good = 'good is the same';
+          	if(temp === 1){
+          		if(marker.icon == icon){
+          			// marker.setIcon(ultraball);
+          			console.log('ultra');
+          		}else{
+          			// marker.setIcon(icon);
+          			console.log('oh no!');
+          		}
+          		iconClicked = true;
+          		temp = 0;
+          	}
+          	console.log(marker);
 		})
-		// var alertContent = "Year Rank: "+ city.yearRank + ", Year Estimate of Population: " + city.yearEstimate + ", Last Census: " + city.lastCensus ", Percent Change: " + city.change + ", Land Area sq mi/km2: " + city.landArea + "/" + city.landAreaInKm + ", Population Density sq mi/km2: " + city.lastPopDensity + "/" + city.lastPopDensityInKM + ", Lat/Lng Location: " + city.latLon;
+		google.maps.event.addListener(marker,'mouseover', function(){
+			temp = 1;
+			if(marker.icon == ultraball){
+				marker.setIcon(icon)
+			}else if(marker.icon == icon){
+				marker.setIcon(ultraball);
+			}
+		})
+		google.maps.event.addListener(marker, 'mouseout', function(){
+			temp = 2;
+			if(iconClicked !== true){
+				if(marker.icon == icon){
+					marker.setIcon(ultraball);
+				}else if(marker.icon == ultraball){
+					marker.setIcon(icon);
+				}
+			}else if(iconClicked === true){
+				if(marker.icon === icon){
+					marker.setIcon(icon);
+				}else if(marker.icon === ultraball){
+					marker.setIcon(ultraball);
+				}
+			}
+		})
+		
 		$scope.showAlert = function(ev, city) {
 			var name = city.city +", "+ city.state;
 			var alertContent = 'Year Rank: ' + city.yearRank + ", Year Estimate of Population: " + city.yearEstimate + ", Last Census: " + city.lastCensus + ", Percent Change: " + city.change + ", Land Area sq mi/km2: " + city.landArea + "/" + city.landAreaInKm + ", Population Density sq mi/km2: " + city.lastPopDensity + "/" + city.lastPopDensityInKM + ", Lat/Lng Location: " + city.latLon;

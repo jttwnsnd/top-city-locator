@@ -60,8 +60,12 @@ md-virtual-repeat-container {
 .search-box input {
   width: 100%;
 }
+/* line 71, ../compass/sass/styles.scss */
+.search-box .marker-option {
+  margin: 20px;
+}
 
-/* line 73, ../compass/sass/styles.scss */
+/* line 76, ../compass/sass/styles.scss */
 .getDir {
   font-size: 10px;
   margin-right: 3px;
